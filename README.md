@@ -16,5 +16,6 @@ Host fileserver
 ```
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINyPtsnO+/mohi2qJaxzG4hKWMO45CVbcHiocSx7aQnV command="/usr/bin/rsync",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty eshc@laundrycam
 ```
-6. On pi, `sudo systemctl enable --now laundrycam.timer`
-7. On pi, after a few seconds, `sudo systemctl status laundrycam` and check no errors.
+6. Create a directory in `/var/www/fileserver` and chown it to the laundrycam user
+7. On pi, `sudo systemctl enable --now laundrycam.timer`
+8. On pi, after a few seconds, `sudo systemctl status laundrycam` and check no errors.
