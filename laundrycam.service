@@ -1,0 +1,15 @@
+# /etc/systemd/system/laundrycam.service
+# if you edit these files, please commit your changes back to the github repo.
+# https://github.com/eshc/eshc-laundrycam
+[Unit]
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=eshc
+ExecStart=rpicam-still --output /home/eshc/pic.jpg --rotation 180 --roi 0.25,0.3,0.40,0.60 --width 1200 --height 1800 --nopreview
+ExecStart=rsync --times --verbose --progress /home/eshc/pic.jpg fileserver:/var/www/fileserver/pic.jpg
+
+[Install]
+WantedBy=multi-user.target

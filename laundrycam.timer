@@ -1,0 +1,12 @@
+# /etc/systemd/system/laundrycam.service
+# if you edit these files, please commit your changes back to the github repo.
+# https://github.com/eshc/eshc-laundrycam
+[Unit]
+Description=Run laundrycam.service each minute
+
+[Timer]
+OnCalendar=minutely
+Persistent=true
+
+[Install]
+WantedBy=timers.target
