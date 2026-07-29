@@ -8,8 +8,9 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 User=eshc
-ExecStart=rpicam-still --output /home/eshc/pic.jpg --rotation 180 --roi 0.25,0.3,0.40,0.60 --width 1200 --height 1800 --nopreview
-ExecStart=rsync --times --verbose --progress /home/eshc/pic.jpg fileserver:/var/www/fileserver/pic.jpg
+ExecStart=rpicam-still --output /home/eshc/original.jpg --rotation 180 --roi 0.25,0.3,0.40,0.60 --width 1200 --height 1800 --nopreview
+ExecStart=convert /home/eshc/original.jpg -gravity NorthWest -pointsize 50 -fill white -annotate +30+30 %[exif:DateTimeOriginal] /home/eshc/time.jpg
+ExecStart=rsync --times --verbose --progress /home/eshc/time.jpg fileserver:/var/www/fileserver/pic.jpg
 
 [Install]
 WantedBy=multi-user.target
